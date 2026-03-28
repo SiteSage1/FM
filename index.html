@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Travel of Sri Lanka - වාහන කුලියට ගැනීම, විවාහ සහ සංචාරක සේවා">
+    <title>Travel of Sri Lanka | සුපිරි වාහන සහ සංචාර</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --primary: #10b981;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navbar animation */
+        .navbar {
+            animation: slideDown 0.6s ease forwards;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Hero title animation */
+        .hero-title {
+            animation: fadeInUp 1.2s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card hover animation */
+        .vehicle-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .vehicle-card:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 25px 50px -12px rgb(16 185 129);
+        }
+
+        /* Section header animation */
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #10b981, #eab308);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: lineGrow 1.5s ease forwards;
+        }
+        
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile navbar small */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            .nav-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Background pattern */
+        .bg-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(234, 179, 8, 0.1) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="tailwind-ready bg-slate-50 text-slate-800">
+
+    <!-- NAVBAR -->
+    <nav class="navbar bg-emerald-700 text-white shadow-2xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                
+                <!-- Logo + Title -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-inner text-emerald-700 text-2xl">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h1 class="logo-font text-2xl md:text-3xl font-bold tracking-tighter flex flex-col leading-none">
+                        Travel of<br><span class="text-amber-300 text-xl md:text-2xl">Sri Lanka</span>
+                    </h1>
+                    <!-- Beautiful animated flag dot -->
+                    <div class="hidden md:flex items-center gap-1 text-xs">
+                        <div class="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                        <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse delay-150"></div>
+                        <div class="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-300"></div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#vehicles" class="hover:text-amber-300 flex items-center gap-1">
+                        <i class="fas fa-car"></i> වාහන
+                    </a>
+                    <a href="#services" class="hover:text-amber-300 flex items-center gap-1">
+                        <i class="fas fa-concierge-bell"></i> සේවා
+                    </a>
+                    <a href="#destinations" class="hover:text-amber-300 flex items-center gap-1">
+                        <i class="fas fa-map-marked-alt"></i> සංචාරක තැන්
+                    </a>
+                    <a href="#contact" class="hover:text-amber-300 flex items-center gap-1">
+                        <i class="fas fa-phone"></i> සම්බන්ධතා
+                    </a>
+                </div>
+
+                <!-- Call & WhatsApp Buttons -->
+                <div class="flex items-center gap-3">
+                    <!-- Call Button -->
+                    <a href="tel:+94776093921" 
+                       onclick="if(confirm('ඔබට +94776093921 අංකයට කෝල් කිරීමට අවශ්‍යද?')){}"
+                       class="flex items-center gap-2 bg-white text-emerald-700 px-5 py-2.5 rounded-3xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                        <i class="fas fa-phone-volume text-lg"></i>
+                        <span class="hidden sm:inline">Call Now</span>
+                        <span class="text-xs sm:hidden">Call</span>
+                    </a>
+                    
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/94776093921?text=Hello%20Travel%20of%20Sri%20Lanka!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+                       target="_blank"
+                       class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 rounded-3xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 border border-white/30">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <span class="hidden sm:inline">WhatsApp</span>
+                    </a>
+
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-3xl">
+                        <i class="fas fa-bars" id="hamburger-icon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-emerald-700 py-4 border-t border-emerald-600 mt-2 rounded-3xl">
+                <div class="flex flex-col gap-4 px-6 text-white font-medium">
+                    <a href="#vehicles" onclick="toggleMobileMenu()" class="py-2 flex items-center gap-3">🚗 වාහන</a>
+                    <a href="#services" onclick="toggleMobileMenu()" class="py-2 flex items-center gap-3">🛎️ සේවා</a>
+                    <a href="#destinations" onclick="toggleMobileMenu()" class="py-2 flex items-center gap-3">🗺️ සංචාරක තැන්</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="py-2 flex items-center gap-3">📞 සම්බන්ධතා</a>
+                    <div class="pt-4 border-t border-emerald-600 flex gap-4">
+                        <a href="tel:+94776093921" onclick="toggleMobileMenu()" class="flex-1 text-center bg-white text-emerald-700 py-3 rounded-2xl font-bold">Call Now</a>
+                        <a href="https://wa.me/94776093921" onclick="toggleMobileMenu()" class="flex-1 text-center bg-emerald-600 py-3 rounded-2xl font-bold">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="bg-gradient-to-br from-emerald-800 via-amber-700 to-emerald-900 text-white py-16 md:py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-3xl text-sm font-medium mb-6">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-300"></span>
+                    </span>
+                    සුපිරි සංචාරක අත්දැකීම්
+                </div>
+                
+                <h1 class="hero-title text-5xl md:text-6xl font-bold logo-font leading-none mb-4">
+                    Welcome to<br>Travel of Sri Lanka
+                </h1>
+                <p class="text-2xl text-amber-200 mb-8">ඔබේ සිහින සංචාරය අප සමග සාක්ෂාත් කරගන්න</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#vehicles" 
+                       class="bg-white text-emerald-700 px-8 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 hover:bg-amber-300">
+                        <i class="fas fa-car"></i> වාහන බලන්න
+                    </a>
+                    <a href="https://wa.me/94776093921" target="_blank"
+                       class="border-2 border-white px-8 py-4 rounded-3xl font-semibold text-lg flex items-center gap-3 hover:bg-white hover:text-emerald-700">
+                        <i class="fab fa-whatsapp"></i> WhatsApp කරන්න
+                    </a>
+                </div>
+                
+                <div class="mt-10 flex items-center gap-8 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                        <div>
+                            <div class="font-bold">ප්‍රවේශම්</div>
+                            <div class="text-emerald-200">සුරක්ෂිත සංචාර</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-clock text-2xl"></i>
+                        <div>
+                            <div class="font-bold">24/7</div>
+                            <div class="text-emerald-200">සේවාව</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-globe text-2xl"></i>
+                        <div>
+                            <div class="font-bold">සියලුම දිස්ත්‍රික්</div>
+                            <div class="text-emerald-200">සංචාරය</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero visual -->
+            <div class="relative hidden md:block">
+                <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-4 shadow-2xl">
+                    <img src="https://picsum.photos/id/1015/800/520" 
+                         alt="Sri Lanka travel"
+                         class="rounded-3xl shadow-2xl w-full h-auto object-cover">
+                    <div class="absolute -bottom-4 -right-4 bg-white text-emerald-700 px-6 py-3 rounded-3xl shadow-xl flex items-center gap-3 text-sm font-semibold">
+                        <i class="fas fa-map-pin text-xl"></i>
+                        හරිත දේශයේ සංචාරය
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 hidden md:flex flex-col items-center text-white/70 text-xs">
+            <div class="animate-bounce">↓</div>
+            <span>Scroll for more</span>
+        </div>
+    </header>
+
+    <!-- VEHICLES SECTION -->
+    <section id="vehicles" class="max-w-7xl mx-auto px-6 py-16 bg-pattern">
+        <div class="text-center mb-12">
+            <h2 class="section-header text-4xl font-bold logo-font mb-2">අපගේ වාහන</h2>
+            <p class="text-emerald-600 text-lg">කිලෝමීටරයකට අඩුම මිලකට සුපිරි වාහන</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            <!-- Suzuki Wagon R -->
+            <div class="vehicle-card bg-white rounded-3xl shadow-xl overflow-hidden p-4">
+                <img src="https://picsum.photos/id/29/280/160" alt="Suzuki Wagon R" 
+                     class="w-full h-28 object-cover rounded-2xl mb-4">
+                <h4 class="font-semibold text-xl">Suzuki Wagon R</h4>
+                <p class="text-emerald-600 text-2xl font-bold">1KM - LKR 100</p>
+                <p class="text-xs text-slate-500 mt-1">කුඩා පවුල් වාහනය • A/C</p>
+            </div>
+            
+            <!-- Toyota Prius -->
+            <div class="vehicle-card bg-white rounded-3xl shadow-xl overflow-hidden p-4">
+                <img src="https://picsum.photos/id/30/280/160" alt="Toyota Prius" 
+                     class="w-full h-28 object-cover rounded-2xl mb-4">
+                <h4 class="font-semibold text-xl">Toyota Prius</h4>
+                <p class="text-emerald-600 text-2xl font-bold">1KM - LKR 110</p>
+                <p class="text-xs text-slate-500 mt-1">හයිබ්‍රිඩ් • ඉතා ඉන්ධන සාර්ථක</p>
+            </div>
+            
+            <!-- Suzuki Alto -->
+            <div class="vehicle-card bg-white rounded-3xl shadow-xl overflow-hidden p-4">
+                <img src="https://picsum.photos/id/160/280/160" alt="Suzuki Alto" 
+                     class="w-full h-28 object-cover rounded-2xl mb-4">
+                <h4 class="font-semibold text-xl">Suzuki Alto</h4>
+                <p class="text-emerald-600 text-2xl font-bold">1KM - LKR 100</p>
+                <p class="text-xs text-slate-500 mt-1">කුඩා සහ ඉතා කාර්යක්ෂම</p>
+            </div>
+            
+            <!-- Tata Nano -->
+            <div class="vehicle-card bg-white rounded-3xl shadow-xl overflow-hidden p-4">
+                <img src="https://picsum.photos/id/201/280/160" alt="Tata Nano" 
+                     class="w-full h-28 object-cover rounded-2xl mb-4">
+                <h4 class="font-semibold text-xl">Tata Nano</h4>
+                <p class="text-emerald-600 text-2xl font-bold">1KM - LKR 90</p>
+                <p class="text-xs text-slate-500 mt-1">අඩුම මිල • නගරය සඳහා හොඳම</p>
+            </div>
+            
+            <!-- KDH Van -->
+            <div class="vehicle-card bg-white rounded-3xl shadow-xl overflow-hidden p-4">
+                <img src="https://picsum.photos/id/1015/280/160" alt="KDH Van" 
+                     class="w-full h-28 object-cover rounded-2xl mb-4">
+                <h4 class="font-semibold text-xl">KDH Van</h4>
+                <p class="text-emerald-600 text-2xl font-bold">1KM - LKR 170</p>
+                <p class="text-xs text-slate-500 mt-1">9-12 පුද්ගලයින් • කාණ්ඩ</p>
+            </div>
+            
+            <!-- Wedding Cars -->
+            <div class="vehicle-card bg-white rounded-3xl shadow-xl overflow-hidden p-4 border-2 border-amber-300">
+                <img src="https://picsum.photos/id/1005/280/160" alt="Wedding Car" 
+                     class="w-full h-28 object-cover rounded-2xl mb-4">
+                <h4 class="font-semibold text-xl text-amber-500">Wedding Cars</h4>
+                <p class="text-emerald-600 text-2xl font-bold">විවාහ සඳහා විශේෂ</p>
+                <p class="text-xs text-slate-500 mt-1">ලස්සන වාහන • ඔබේ විවාහ දිනයට</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR SERVICES -->
+    <section id="services" class="max-w-7xl mx-auto px-6 py-16 bg-white">
+        <div class="text-center mb-12">
+            <h2 class="section-header text-4xl font-bold logo-font mb-2">අපගේ සේවා</h2>
+            <p class="max-w-md mx-auto text-slate-600">ඔබේ සෑම සංචාරයකටම සහාය වීමට අපි සූදානම්</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">🚕</div>
+                <h4 class="font-semibold text-xl mb-1">Taxi / Cab</h4>
+                <p class="text-slate-500">ඔබට අවශ්‍ය විටම</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">🛋️</div>
+                <h4 class="font-semibold text-xl mb-1">Comfortable Vehicles</h4>
+                <p class="text-slate-500">A/C සහ non A/C</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">🧑‍✈️</div>
+                <h4 class="font-semibold text-xl mb-1">Professional Drivers</h4>
+                <p class="text-slate-500">පුහුණුවත් රියදුරු</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">🌍</div>
+                <h4 class="font-semibold text-xl mb-1">All Island</h4>
+                <p class="text-slate-500">සියලුම ප්‍රදේශ</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">💰</div>
+                <h4 class="font-semibold text-xl mb-1">Lowest Rate</h4>
+                <p class="text-slate-500">අඩුම මිල</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">👨‍✈️</div>
+                <h4 class="font-semibold text-xl mb-1">With Driver</h4>
+                <p class="text-slate-500">රියදුරු සමග</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">🕒</div>
+                <h4 class="font-semibold text-xl mb-1">24 Hours Service</h4>
+                <p class="text-slate-500">දවස පුරා</p>
+            </div>
+            <div class="text-center group">
+                <div class="text-6xl mb-4 group-hover:scale-110">❄️</div>
+                <h4 class="font-semibold text-xl mb-1">A/C &amp; Non A/C</h4>
+                <p class="text-slate-500">ඔබේ රුචියට</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR VEHICLES CATEGORIES -->
+    <section class="max-w-7xl mx-auto px-6 py-12 bg-slate-100">
+        <h2 class="text-center text-3xl font-bold mb-8">අපගේ වාහන වර්ග</h2>
+        <div class="flex flex-wrap justify-center gap-6 text-center">
+            <div class="bg-white px-8 py-4 rounded-3xl shadow text-lg font-medium">Wedding Cars</div>
+            <div class="bg-white px-8 py-4 rounded-3xl shadow text-lg font-medium">Car</div>
+            <div class="bg-white px-8 py-4 rounded-3xl shadow text-lg font-medium">Mini Car</div>
+            <div class="bg-white px-8 py-4 rounded-3xl shadow text-lg font-medium">KDH Van</div>
+            <div class="bg-white px-8 py-4 rounded-3xl shadow text-lg font-medium">Bus</div>
+            <div class="bg-white px-8 py-4 rounded-3xl shadow text-lg font-medium">Lorry</div>
+        </div>
+    </section>
+
+    <!-- TOUR DESTINATIONS -->
+    <section id="destinations" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <h2 class="section-header text-4xl font-bold logo-font mb-2">ශ්‍රී ලංකාවේ සංචාරක තැන්</h2>
+            <p class="text-emerald-600">ඔබේ හදවතට ගැලපෙන ස්ථාන</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/1016/600/300" class="w-full h-40 object-cover" alt="Sigiriya">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Sigiriya</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">පුරාණ ලෝක උරුමයක් වන සීගිරිය ලෝකයේ ප්‍රසිද්ධ කඳු මුදුනකි. බිතු සිතුවම් සහ ඉතිහාසයෙන් පිරුණු ස්ථානයකි.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/133/600/300" class="w-full h-40 object-cover" alt="Anuradhapura">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Anuradhapura</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">ශ්‍රී ලංකාවේ පුරාණ අගනුවර. විශාල ස්තූප සහ ශ්‍රී මහාබෝධිය සමග ඉතිහාසයේ බලකොටුවකි.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/201/600/300" class="w-full h-40 object-cover" alt="Kandy">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Kandy</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">කන්දුරු මාලිගාව සහ දන්ත ධාතු මන්දිරය සමග සංස්කෘතික උරුමයකි. නිදහස් විල සහ කඳු පිරි සුන්දර නගරයකි.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/1005/600/300" class="w-full h-40 object-cover" alt="Nuwara Eliya">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Nuwara Eliya</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">කුඩා ඉංග්‍රීසිය - තේ වතු, ශීතල වාතාවරණය සහ යුරෝපීය ගෘහ නිර්මාණයන්.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/1018/600/300" class="w-full h-40 object-cover" alt="Galle">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Galle</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">ගාල්ල කොටුව යුරෝපීය ඉතිහාසයේ සාක්ෂියකි. සුන්දර වෙරළ සහ පැරණි නගරයකි.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/133/600/300" class="w-full h-40 object-cover" alt="Polonnaruwa">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Polonnaruwa</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">පුරාණ නගරයේ හොඳින් රැකගත් බුදු පිළිරු සහ පුරාවස්තු.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/160/600/300" class="w-full h-40 object-cover" alt="Yala">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Yala National Park</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">ලෙපඩ් සහ වන ජීවීන්ගේ රාජධානිය. සෆාරි සංචාර සඳහා හොඳම ස්ථානය.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/201/600/300" class="w-full h-40 object-cover" alt="Ella">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Ella</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">නයින් ආර්ච් පාලම, ඇතුල් ඇතුළු ජලපාත සහ කඳුකර සුන්දරත්වය.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/1005/600/300" class="w-full h-40 object-cover" alt="Adams Peak">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Adams Peak</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">ශ්‍රී පාදස්ථානය - බෞද්ධ, හින්දු, ක්‍රිස්තියානි සහ ඉස්ලාම් ආගම්වල පූජනීය ස්ථානය.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/1015/600/300" class="w-full h-40 object-cover" alt="Pinnawala">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Pinnawala</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">පින්නවල අලි ආශ්‍රමය - ලෝකයේ විශාලතම අලි රංචුවක් දැකගත හැකිය.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/133/600/300" class="w-full h-40 object-cover" alt="Horton Plains">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Horton Plains</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">ලෝකයේ අන්තය (World's End) සහ අලංකාර කඳුකර දර්ශන.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/160/600/300" class="w-full h-40 object-cover" alt="Udawalawe">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Udawalawa National Park</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">අලි රංචු සහ පක්ෂි නිරීක්ෂණ සඳහා ප්‍රසිද්ධය.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl">
+                <img src="https://picsum.photos/id/201/600/300" class="w-full h-40 object-cover" alt="Wilpattu">
+                <div class="p-6">
+                    <h4 class="font-bold text-xl">Wilpattu National Park</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">ශ්‍රී ලංකාවේ විශාලතම ජාතික වනෝද්‍යානය - ලෙපඩ් සහ වන ජීවීන්ගේ නිවහස.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="bg-emerald-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold logo-font mb-6">සම්බන්ධතා</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-user text-4xl mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Name</p>
+                                <p class="text-xl">S.N. Weerasinghe</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-envelope text-4xl mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-xl">wsuranga715@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-phone-volume text-4xl mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Tel</p>
+                                <a href="tel:+94776093921" class="text-3xl font-bold hover:text-amber-300">+94 776 093 921</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fab fa-whatsapp text-4xl mt-1"></i>
+                            <div>
+                                <p class="font-semibold">Whatsapp (Message Only)</p>
+                                <a href="https://wa.me/94776093921" target="_blank" class="text-3xl font-bold hover:text-amber-300">+94 776 093 921</a> / 
+                                <a href="https://wa.me/94773885161" target="_blank" class="text-3xl font-bold hover:text-amber-300">+94 773 885 161</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick contact buttons -->
+                <div class="flex flex-col justify-center gap-6">
+                    <p class="text-2xl font-medium">වැඩි විස්තර දැනගැනීමට</p>
+                    <a href="https://wa.me/94776093921?text=Hello%20Travel%20of%20Sri%20Lanka!%20I%20need%20more%20information%20about%20your%20vehicles%20and%20tours." 
+                       target="_blank"
+                       class="flex items-center justify-center gap-4 bg-white text-emerald-700 py-6 rounded-3xl text-xl font-semibold shadow-xl hover:scale-105">
+                        <i class="fab fa-whatsapp text-4xl"></i>
+                        WhatsApp එකෙන් අමතන්න
+                    </a>
+                    <a href="#footer" 
+                       class="flex items-center justify-center gap-4 bg-amber-400 text-emerald-900 py-6 rounded-3xl text-xl font-semibold shadow-xl hover:scale-105">
+                        <i class="fab fa-facebook text-4xl"></i>
+                        Facebook පිටුවට යන්න
+                    </a>
+                    <p class="text-sm text-emerald-200 text-center mt-6">ඔබේ සංචාරයේ සෑම මොහොතකම අපි සමග!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="bg-slate-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">🚗</div>
+                    <div class="logo-font text-2xl">Travel of Sri Lanka</div>
+                </div>
+                
+                <div class="flex gap-8 text-sm">
+                    <a href="https://wa.me/94776093921" target="_blank" class="flex items-center gap-2 hover:text-emerald-400">
+                        <i class="fab fa-whatsapp text-2xl"></i> WhatsApp
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="flex items-center gap-2 hover:text-emerald-400">
+                        <i class="fab fa-facebook text-2xl"></i> Facebook
+                    </a>
+                </div>
+                
+                <div class="text-center md:text-right text-xs opacity-70">
+                    © 2026 Travel of Sri Lanka • All Rights Reserved<br>
+                    Made with ❤️ for beautiful Sri Lanka journeys
+                </div>
+            </div>
+            
+            <div class="text-center text-xs mt-10 opacity-50">
+                මෙම වෙබ්සයිට් ඔබේ දුරකථනයෙන් සහ පරිගණකයෙන් පහසුවෙන් නැරඹිය හැකියි. ඔබේ අදහස් එකතු කර තිබෙනවා - ලස්සන ඇනිමේෂන් සහ වර්ණ සමග!
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script initialization
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        content: [],
+                        theme: {
+                            extend: {}
+                        },
+                        plugins: [],
+                        ...userConfig,
+                    }
+                },
+                theme: {
+                    extend: {},
+                },
+            }
+        }
+        document.documentElement.setAttribute('data-tailwind-config', JSON.stringify(initializeTailwind().config()))
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            const icon = document.getElementById('hamburger-icon')
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden')
+                icon.classList.replace('fa-bars', 'fa-times')
+            } else {
+                menu.classList.add('hidden')
+                icon.classList.replace('fa-times', 'fa-bars')
+            }
+        }
+        
+        // Simple confetti for fun when clicking call button (optional beautiful touch)
+        function addConfetti() {
+            // Only on desktop for performance
+            if (window.innerWidth > 768) {
+                const colors = ['#10b981', '#eab308', '#ffffff']
+                for (let i = 0; i < 60; i++) {
+                    const confetti = document.createElement('div')
+                    confetti.style.position = 'fixed'
+                    confetti.style.zIndex = '9999'
+                    confetti.style.left = Math.random() * 100 + 'vw'
+                    confetti.style.top = '-10px'
+                    confetti.style.width = '10px'
+                    confetti.style.height = '10px'
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+                    confetti.style.opacity = Math.random()
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`
+                    document.body.appendChild(confetti)
+                    
+                    const duration = Math.random() * 3000 + 1500
+                    confetti.animate([
+                        { transform: `translateY(0) rotate(0deg)` },
+                        { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 2000}deg)` }
+                    ], {
+                        duration: duration,
+                        easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+                    })
+                    
+                    setTimeout(() => confetti.remove(), duration)
+                }
+            }
+        }
+        
+        // Add event listener to call button for confetti
+        window.onload = function() {
+            const callBtn = document.querySelector('a[href="tel:+94776093921"]')
+            if (callBtn) {
+                callBtn.addEventListener('click', () => {
+                    setTimeout(addConfetti, 300)
+                })
+            }
+            
+            console.log('%c✅ Travel of Sri Lanka වෙබ්සයිට් සූදානම්! ලස්සනට ඇනිමේෂන් සහ mobile responsive.', 'color:#10b981; font-size:16px; font-weight:bold')
+        }
+    </script>
+</body>
+</html>
